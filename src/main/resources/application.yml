@@ -1,0 +1,46 @@
+#连接数据库
+spring: 
+  datasource:  
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/shiro?useUnicode=true&characterEncoding=utf8&useSSL=true&serverTimezone=UTC
+      username: root
+      password: root
+      initialSize: 3 
+      minIdle: 3 
+      maxActive: 30 
+      maxWait: 15000 
+      validationQuery: SELECT 'x'
+      #监控的配置
+      stat-view-servlet: 
+        login-username: system
+        login-password: 123456
+        allow: 
+        deny: 
+        url-pattern: /druid/*
+        enabled: true
+#配置thymeleaf
+  thymeleaf:
+    cache: false
+    enabled: true
+#mybatis的配置
+mybatis:
+  mapper-locations: 
+  - classpath:mapper/*Mapper.xml 
+  configuration: 
+    log-impl:  org.apache.ibatis.logging.stdout.StdOutImpl
+
+#shiro的配置
+shiro:
+  hash-algorithm-name: md5
+  hash-iterations: 2
+  login-url: /index.html
+  target-bean-name: shiroFilter
+  target-filter-lifecycle: true
+  unauthorized-url: /unauthorized.html
+  anon-urls:
+  - /login/login*
+  - /index.html*
+  - /resources/**
+  authc-urls:
+  - /**

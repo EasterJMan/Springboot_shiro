@@ -1,0 +1,52 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>用户登陆</title>
+<script type="text/javascript" src="/resources/js/jquery-3.1.1.min.js" charset="utf-8"></script>
+</head>
+<body>
+<h1 align="center">用户登陆</h1>
+<input type="button" value="登陆" id="login" />
+<input type="button" value="查询" id="query" />
+<input type="button" value="添加" id="add" />
+<input type="button" value="修改" id="update" />
+<input type="button" value="删除" id="delete" />
+<input type="button" value="导出" id="export" />
+
+
+
+<script type="text/javascript">
+	$("#login").click(function(){
+		$.post("/login/login",{username:'wangwu',password:'123456'},function(obj){
+			alert(obj.code+"  " +obj.msg);
+		});
+	});
+	$("#query").click(function(){
+		$.post("/user/queryUser",function(obj){
+			alert(obj.code+"  " +obj.msg);
+		});
+	});
+	$("#add").click(function(){
+		$.post("/user/addUser",function(obj){
+			alert(obj.code+"  " +obj.msg);
+		});
+	});
+	$("#update").click(function(){
+		$.post("/user/updateUser",function(obj){
+			alert(obj.code+"  " +obj.msg);
+		});
+	});
+	$("#delete").click(function(){
+		$.post("/user/deleteUser",function(obj){
+			alert(obj.code+"  " +obj.msg);
+		});
+	});
+	$("#export").click(function(){
+		$.post("/user/exportUser",function(obj){
+			alert(obj.code+"  " +obj.msg);
+		});
+	});
+</script>
+
+</body>
+</html>
